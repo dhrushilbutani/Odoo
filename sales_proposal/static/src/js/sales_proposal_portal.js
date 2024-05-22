@@ -27,10 +27,6 @@ odoo.define('sales_proposal.portal_proposal', function (require) {
         },
 
         _refreshOrderUI(data){
-            const $proposalTemplate = $(data['proposal_template']);
-            if ($proposalTemplate.length) {
-                this.$('#proposal_content').html($proposalTemplate);
-            }
             $('#sale_proposal_total').load(window.location.href + ' #sale_proposal_total');
             $('#sale_proposal_total').load(window.location.href + ' #sale_proposal_total');
         },

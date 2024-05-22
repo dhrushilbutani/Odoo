@@ -20,14 +20,6 @@ class ProposalPortal(portal.CustomerPortal):
             ),
         }
 
-    def _set_self_portal_data(self, counter):
-        values = super()._set_self_portal_data(counter)
-        partner = request.env.user.partner_id
-        if 'order_count' in counter:
-            SaleProposal = request.env['sales.proposal']
-            values['order_count'] = SaleProposal.search_count(self._set_proposal_domain(partner)) \
-                if SaleProposal.check_access_rights('read', raise_exception=False) else 0
-            return values
 
     def _set_proposal_domain(self, partner):
         return [
@@ -100,7 +92,6 @@ class ProposalPortal(portal.CustomerPortal):
             'sales_proposal': order_sudo,
             'message': message,
             'report_type': 'html',
-            # 'backend_url': backend_url,
             'res_company': order_sudo.company_id,  # Used to display correct company logo
         }
 

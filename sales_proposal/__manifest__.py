@@ -27,7 +27,6 @@
     'assets': {
         'web.assets_frontend': [
             'sales_proposal/static/src/js/sales_proposal_portal.js',
-            'sales_proposal/static/src/xml/sales_proposal_portal.xml',
         ],
     },
     'installable': True,
