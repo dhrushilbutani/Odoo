@@ -50,7 +50,7 @@ class ProposalPortal(portal.CustomerPortal):
             sortby = 'date'
 
         partner = request.env.user.partner_id
-        values = self._set_portal_layout_values()
+        # values = self._set_portal_layout_values()
 
         url = "/sales/proposals"
         domain = self._set_proposal_domain(partner)
@@ -71,7 +71,7 @@ class ProposalPortal(portal.CustomerPortal):
         )
         orders = SaleProposal.search(domain, order=sort_order, limit=self._items_per_page,
                                      offset=pager_values['offset'])
-        values.update({
+        values = {
             'date': date_begin,
             'quotations': orders.sudo(),
             'orders': orders.sudo(),
@@ -80,7 +80,7 @@ class ProposalPortal(portal.CustomerPortal):
             'default_url': url,
             'searchbar_sortings': searchbar_sortings,
             'sortby': sortby,
-        })
+        }
         return values
 
     @http.route(['/sales/proposals', '/sales/proposals/page/<int:page>'], type='http', auth="user", website=True)
